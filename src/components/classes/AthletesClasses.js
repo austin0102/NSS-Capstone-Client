@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./Class.css"
 import { getClassByAthlete } from '../../managers/athleteClassesManager';
 
 export const MyAthleteClasses = ({ token }) => {
@@ -38,19 +39,37 @@ export const MyAthleteClasses = ({ token }) => {
     setShowUpcoming(false);
   };
 
+  const formatDate = (dateString) => {
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    };
+    return new Date(dateString).toLocaleString(undefined, options);
+  };
+
   return (
     <div className="container">
       <h1 className="classes-title">My classes</h1>
-
-      <div>
-        <button onClick={filterUpcoming}>Upcoming</button>
-        <button onClick={filterCompleted}>Completed</button>
-        <button onClick={resetFilters}>All Classes</button>
+  
+      <div className="class-actions">
+        <button className="filter-button" onClick={filterUpcoming}>
+          Upcoming
+        </button>
+        <button className="filter-button" onClick={filterCompleted}>
+          Completed
+        </button>
+        <button className="filter-button" onClick={resetFilters}>
+          All Classes
+        </button>
       </div>
-
-      <article>
+  
+      <article className="article">
         {athleteClasses.map((classObject) => (
-          <div className="post" key={classObject.id}>
+          <div className="class" key={classObject.id}>
             <div className="title">
               {classObject.class_attended.name} with{' '}
               {classObject.class_attended.trainer.first_name}
@@ -58,17 +77,17 @@ export const MyAthleteClasses = ({ token }) => {
             <section>
               <div>
                 {classObject.class_attended.location}{' '}
-                {classObject.class_attended.timeDate}
+                <div className="time-date">{formatDate(classObject.class_attended.timeDate)}</div>
               </div>
               <div>{classObject.class_attended.difficulty.skillLevel}</div>
-              <div>{classObject.class_attended.price}</div>
+              <div>${classObject.class_attended.price}</div>
             </section>
           </div>
         ))}
       </article>
     </div>
   );
-};
+        }  
 
 
 

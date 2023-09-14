@@ -1,32 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Login } from "../components/auth/Login";
 import { Register } from "../components/auth/Register";
+import { Login } from "../components/auth/Login";
 import { Authorized } from "./Authorized";
 import { ClassList } from "../components/classes/ClassList";
-import { ClassForm } from "../components/classes/ClassForm";
-import { UserClasses } from "../components/classes/UserClasses";
-import { EditClassDetails } from "../components/classes/EditClass";
-import { MyAthleteClasses } from "../components/classes/AthletesClasses";
 import { ViewOtherUserClasses } from "../components/classes/OtherUserClasses";
+import { MyAthleteClasses } from "../components/classes/AthletesClasses";
 
-
-export const AthleteViews = ({ token, setToken }) => {
+export const AthleteViews = (token, setToken) => {
   return (
     <Routes>
-      
-
+        <Route element={<Authorized token={token} />} />
       <Route path="/classes">
-        <Route index element={<ClassList token={token} setToken={setToken} />} />
-        
+        <Route index element={<ClassList />} />
         <Route path="trainer/:trainerId" element={<ViewOtherUserClasses />} />
-
       </Route>
 
-
-      <Route path="/my-athlete-classes" element={<MyAthleteClasses token={token} />} />
-
-
+      <Route path="/my-athlete-classes" element={<MyAthleteClasses />} />
     </Routes>
   );
 };
+
+

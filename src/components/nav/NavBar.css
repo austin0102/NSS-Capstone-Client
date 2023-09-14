@@ -1,3 +1,56 @@
 .navbar-item img {
    max-height: 3rem;
 }
+
+
+.twitter-blue {
+   background-color: #1da1f2; /* Twitter blue background color */
+   color: white; /* Text color */
+   display: flex;
+   flex-direction: row;
+ }
+.navbar.is-success {
+   color: #fff
+}
+
+/* NavBar.css */
+.twitter-blue {
+   background-color: #1da1f2; /* Twitter blue background color */
+   color: white; /* Text color */
+ }
+ 
+ .navbar-brand {
+   display: flex;
+   align-items: center;
+ }
+ 
+ .navbar-start {
+   flex-grow: 1;
+ }
+ 
+ .navbar-end {
+   display: flex;
+   align-items: center;
+ }
+ 
+ .navbar-item {
+   margin-right: 20px; /* Adjust the spacing between links */
+   color: white; /* Link text color */
+   font-weight: bold; /* Link text weight */
+ }
+ 
+ .navbar-item:last-child {
+   margin-right: 0; /* Remove margin for the last link */
+ }
+ 
+ .button.is-outlined {
+   border-color: white; /* Button border color */
+   color: black; /* Button text color */
+ }
+ 
+ .button.is-outlined:hover {
+   background-color: white; /* Button background color on hover */
+   color: #1da1f2; /* Button text color on hover */
+   font-weight: bold;
+ }
+ 

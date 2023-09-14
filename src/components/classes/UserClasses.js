@@ -73,6 +73,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import "./Class.css"
 import { deleteClass, getUserClasses } from '../../managers/ClassManager';
 
 export function UserClasses({ token }) {
@@ -102,6 +103,18 @@ export function UserClasses({ token }) {
 
   const handleFilter = (type) => {
     setFilter(type);
+  };
+
+  const formatDate = (dateString) => {
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    };
+    return new Date(dateString).toLocaleString(undefined, options);
   };
 
   const filteredClasses = () => {
@@ -138,10 +151,11 @@ export function UserClasses({ token }) {
             </div>
             <section>
               <div>
-                {classObject.location} {classObject.timeDate}
+                {classObject.location} 
+              <div className="time-date">{formatDate(classObject.timeDate)}</div>
               </div>
               <div>{classObject.difficulty.skillLevel}</div>
-              <div>{classObject.price}</div>
+              <div>${classObject.price}</div>
               <div className="class-actions">
                 <button
                   className="edit-button"
