@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { editClass, getSingleClass } from '../../managers/ClassManager';
 import { getAllDifficulty } from '../../managers/DifficultyManager';
-// ... (import statements and component setup)
+import "./ClassForm.css"
 
 export const EditClassDetails = () => {
     const navigate = useNavigate();

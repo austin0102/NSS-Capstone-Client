@@ -34,6 +34,27 @@
     margin-top: 16px;
   }
   
+  /* Add appropriate styling to the thumb buttons */
+.thumb-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+  }
+  
+  /* Style the thumbs-up button */
+  .thumbs-up {
+    color: #007bff; /* Blue color for thumbs-up */
+  }
+  
+  /* Style the thumbs-down button */
+  .thumbs-down {
+    color: #dc3545; /* Red color for thumbs-down */
+  }
+  
   
   .filter-button {
     background-color: #1da1f2;

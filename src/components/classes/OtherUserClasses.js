@@ -1,39 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getClassesByTrainer } from '../../managers/ClassManager';
+import { getSingleUser } from '../../managers/UserManager';
 
 export function ViewOtherUserClasses() {
-  const { userId } = useParams();
-  const [userClasses, setUserClasses] = useState([]);
+  const { id } = useParams();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    getClassesByTrainer(userId) // Use getClassesByTrainer function
-      .then((userClassData) => setUserClasses(userClassData))
+    // Ensure that getSingleUser returns a Promise with the data
+    getSingleUser(id)
+      .then((userData) => {
+        setUser(userData);
+      })
       .catch((error) => {
-        // Handle the error here, e.g., show an error message
-        console.error("Error fetching user classes:", error);
+        console.error('Error fetching user data:', error);
       });
-  }, [userId]);
+  }, [id]);
+
+  if (!user) {
+    // Handle the case where user data is still loading
+    return <div>Loading...</div>;
+  }
+
+  const formatDate = (dateString) => {
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    };
+    return new Date(dateString).toLocaleString(undefined, options);
+  };
+
 
   return (
     <div className="container">
-      <h1 className="classes-title">Classes by User</h1>
+      <h1 className="classes-title">Classes by {user.first_name}</h1>
 
       <article>
-        {userClasses.map((classObject) => (
+        {user.my_classes.map((classObject) => (
           <div className="class" key={classObject.id}>
             <div className="title">
-              {classObject.name} with{' '}
-              <Link to={`/classes/${classObject.id}`}>
-                {classObject.trainer.first_name}
-              </Link>
+              {classObject.name}
+              
+                
+              
             </div>
             <section>
               <div>
-                {classObject.location} {classObject.timeDate}
+                {classObject.location} 
+                <div className="time-date">{formatDate(classObject.timeDate)}</div>
               </div>
               <div>{classObject.difficulty.skillLevel}</div>
-              <div>{classObject.price}</div>
+              <div>${classObject.price}</div>
             </section>
           </div>
         ))}
