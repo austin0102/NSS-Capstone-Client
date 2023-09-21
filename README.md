@@ -1,8 +1,8 @@
-
+# ParkFit
 
 
 ## Application Overview
-   Our app aims to empower authors by providing them with a comprehensive platform to create, edit, and manage their posts effectively. With features like post creation, editing, categorization, and deleting authors can easily share their work with other authors around the world.
+   ParkFit is a dynamic fitness and outdoor activity platform designed to foster a vibrant fitness community. Whether you're an outdoor enthusiast looking for exciting classes or a fitness instructor eager to share your expertise, ParkFit is the place to connect.
 
 
  
@@ -11,8 +11,8 @@
 ### Server Side
 1. Clone this repository for the server side:
 ```sh
-git clone git@githubcom:NSS-Day-Cohort-64rare-django-server-kelseys-debugging-divas.git
-cd rare-django-server-kelseys-debugging-divas
+git clone git@github.com:austin0102/NSSl-Final-Capstone.git
+cd NSS1-Final-Capstone
 ```
 2. Initialize virtual environment:
 ```sh
@@ -24,28 +24,27 @@ pipenv install django autopep8 pylint djangorestframework django-cors-headers py
 ```
 4. Create the project and API application 
 ```sh
-django-admin startproject rare .
-python3 manage.py startapp rareapi
+django-admin startproject parkfit .
+python3 manage.py startapp parkfitapi
 ```
 
 5. Migrate and seed database 
 ```sh
 rm db.sqlite3
-rm -rf ./rareapi/migrations
+rm -rf ./parkfitapi/migrations
 python3 manage.py migrate
-python3 manage.py makemigrations rareapi
-python3 manage.py migrate rareapi
-python3 manage.py loaddata categories
-python3 manage.py loaddata reactions
-python3 manage.py loaddata tags
+python3 manage.py makemigrations parkfitapi
+python3 manage.py migrate parkfitapi
 python3 manage.py loaddata users
 python3 manage.py loaddata tokens
-python3 manage.py loaddata authors
-python3 manage.py loaddata posts
-python3 manage.py loaddata comments
-python3 manage.py loaddata post_tags
-python3 manage.py loaddata postreactions
-python3 manage.py loaddata subscriptions
+python manage.py loaddata trainers
+python manage.py loaddata difficulties
+python manage.py loaddata classes
+python manage.py loaddata comments
+python manage.py loaddata athletes
+python manage.py loaddata athlete_classes
+
+
 
 ```
 6. Get the server running
@@ -57,8 +56,8 @@ python3 manage.py runserver
 ### Client Side
 1. Clone this repository for the client side:
 ```sh
-git clone git@githubcom:NSS-Day-Cohort-64rare-django-client-kelsey-s-debugging-divas.git
-cd rare-django-client-kelsey-s-debugging-divas
+git clone git@github.com:austin0102/NSS-Capstone-Client.git
+cd NSS-Capstone-Client
 ```
 2. Install dependencies: 
 ```sh
@@ -69,12 +68,5 @@ npm install
 npm start
 ```
 
-#### Register and Login
-
-![Logging into the app](public/RareRegister.gif) 
-
-
-### Contributors 
--[Kelsey Lemmer](https://github.com/kelseylemmer)
--[Austin Warrick](https://github.com/austin0102)
--[Randy Hamm](https://github.com/randykhamm93)
+### Contact
+Email: austinwarrick@gmail.com
