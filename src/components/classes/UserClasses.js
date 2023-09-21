@@ -84,6 +84,17 @@ export function UserClasses({ token }) {
               </div>
               <div><strong>Difficulty:</strong> {classObject.difficulty.skillLevel}</div>
               <div><strong>Price:</strong> ${classObject.price}</div>
+              <div>
+            <h2 className="comment-header">Comments</h2>
+                            <ul>
+                                {classObject.comments.map((comment) => (
+                                    <li key={comment.id}>
+                                        <strong>{comment.user.username}: </strong>
+                                        {comment.review}
+                                    </li>
+                                ))}
+                            </ul>
+            </div>
               <div className="class-actions">
                 <button
                   className="edit-button"

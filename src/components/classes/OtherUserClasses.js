@@ -63,6 +63,17 @@ export function ViewOtherUserClasses() {
               <strong>Price:</strong> ${classObject.price}
               </div>
             </div>
+            <div>
+            <h2 className="comment-header">Comments</h2>
+                            <ul>
+                                {classObject.comments.map((comment) => (
+                                    <li key={comment.id}>
+                                        <strong>{comment.user.username}: </strong>
+                                        {comment.review}
+                                    </li>
+                                ))}
+                            </ul>
+            </div>
           </div>
         ))}
       </article>
