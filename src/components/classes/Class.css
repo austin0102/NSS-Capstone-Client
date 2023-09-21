@@ -1,83 +1,37 @@
+/* Add this CSS to your stylesheet */
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
-  
+
+  .title {
+    text-align: center;
+  }
+
+  .comment-header{
+    font-weight: bold;
+    text-align: center;
+    margin-top: 9px;
+  }
+
   .classes-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 16px;
   }
   
-  .class-actions {
-    display: flex;
-    justify-content: space-evenly; /* Space buttons evenly */
-    gap: 16px; /* Adjust the gap between buttons */
-    margin-bottom: 16px;
-  }
-  
-
-  .going-button {
-    display: flex;
-    align-items: center; /* Center-align the text vertically */
-    justify-content: center; /* Center-align the text horizontally */
-    background-color: #1da1f2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-    margin-top: 16px;
-  }
-  
-  /* Add appropriate styling to the thumb buttons */
-.thumb-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 16px;
-  }
-  
-  /* Style the thumbs-up button */
-  .thumbs-up {
-    color: #007bff; /* Blue color for thumbs-up */
-  }
-  
-  /* Style the thumbs-down button */
-  .thumbs-down {
-    color: #dc3545; /* Red color for thumbs-down */
-  }
-  
-  
-  .filter-button {
-    background-color: #1da1f2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-  }
-  
-  .filter-button:hover {
-    background-color: #1877b7; /* Darker blue color on hover */
-  }
-  
-  .article {
+  .all {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
+    
   }
   
+  /* Set the width of each class to 48% for two items in each row */
   .class {
     background-color: #ffffff;
     border: 1px solid #e1e8ed;
@@ -86,8 +40,25 @@
     width: 300px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+    margin-bottom: 20px; /* Adjust spacing between rows */
+    margin-top: 20px;
+  }
+
+  .allclasses {
+    background-color: #ffffff;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 16px;
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+    margin-bottom: 20px; /* Adjust spacing between rows */
+    margin-top: 20px;
   }
   
+  /* Adjust class item styling as needed */
   .title {
     font-size: 18px;
     font-weight: bold;
@@ -95,13 +66,13 @@
   }
   
   .title a {
-    color: #1da1f2; /* Twitter blue color for links */
+    color: #1da1f2;
     text-decoration: none;
     transition: color 0.2s;
   }
   
   .title a:hover {
-    color: #1877b7; /* Darker blue color on hover */
+    color: #1877b7;
   }
   
   .section {
@@ -113,7 +84,7 @@
   
   .section div {
     font-size: 14px;
-    color: #657786; /* Twitter gray color */
+    color: #657786;
   }
   
   .class-actions {
@@ -123,8 +94,11 @@
     margin-top: 16px;
   }
   
-  .edit-button,
-  .delete-button {
+  .going-button,
+  .thumb-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #1da1f2;
     color: white;
     border: none;
@@ -133,10 +107,17 @@
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s;
+    margin-top: 16px;
   }
   
-  .edit-button:hover,
-  .delete-button:hover {
-    background-color: #1877b7; /* Darker blue color on hover */
+  .going-button:hover,
+  .thumb-button:hover {
+    background-color: #1877b7;
+  }
+  
+  /* Clear floats for the last row */
+  .all::after {
+    content: "";
+    flex: auto;
   }
   

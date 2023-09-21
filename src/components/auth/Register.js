@@ -15,30 +15,6 @@ export const Register = ({ setToken }) => {
   const passwordDialog = useRef()
   const navigate = useNavigate()
 
-  // const handleRegister = (e) => {
-  //   e.preventDefault()
-
-  //   if (password.current.value === verifyPassword.current.value) {
-  //     const newUser = {
-  //       username: username.current.value,
-  //       first_name: firstName.current.value,
-  //       last_name: lastName.current.value,
-  //       email: email.current.value,
-  //       password: password.current.value,
-  //       is_staff: is_staff.current.value
-  //     }
-
-  //     registerUser(newUser)
-  //       .then(res => {
-  //         if ("valid" in res && res.valid) {
-  //           setToken(res.token)
-  //         }
-  //         navigate("/login")
-  //       })
-  //   } else {
-  //     passwordDialog.current.showModal()
-  //   }
-  // }
 
   const handleRegister = (e) => {
     e.preventDefault();

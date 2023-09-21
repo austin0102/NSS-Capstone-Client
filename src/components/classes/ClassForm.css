@@ -5,9 +5,10 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for a card-like effect */
-    max-width: 400px; /* Limit the width of the form */
+    max-width: 600px; /* Increase the max-width for a wider form */
     margin: 0 auto; /* Center the form horizontally */
-  }
+}
+
   
   h2 {
     font-size: 24px;
@@ -24,8 +25,10 @@
   
   input[type="text"],
   select,
+  input,
+  option,
   button {
-    width: 100%;
+    width: 100%; /* Make the input fields 100% wide */
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 15px;

@@ -50,8 +50,8 @@ export const ClassForm = ({ token }) => {
   };
 
   return (
-    <div>
-      <h2>Create Class</h2>
+    <div className="container">
+      <h2 className="classes-title">Add A New Class</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="className">Class Name:</label>
         <input

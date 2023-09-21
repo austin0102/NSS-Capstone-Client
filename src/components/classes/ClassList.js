@@ -1,9 +1,9 @@
 
-
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllClasses } from "../../managers/ClassManager";
 import { createAthleteClass } from "../../managers/athleteClassesManager";
+import { createComments } from "../../managers/CommentsManager"; // Import the createComments function
 import { getUserByToken } from "../../managers/TokenManager";
 import "./Class.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -46,6 +46,54 @@ export const ClassList = ({ token }) => {
     const [thumbsUpCount, setThumbsUpCount] = useState({});
     const [thumbsDownCount, setThumbsDownCount] = useState({});
     const navigate = useNavigate();
+    const [currentUser, setCurrentUser] = useState(null);
+    const [newComment, setNewComment] = useState(""); // State to store the new comment text
+    const [commentText, setCommentText] = useState({}); // State to store comment text for each class
+
+    const handleCommentChange = (classId, event) => {
+        const newText = event.target.value;
+
+        // Update the commentText state with the new text for the specific class ID
+        setCommentText((prevCommentText) => ({
+            ...prevCommentText,
+            [classId]: newText,
+        }));
+    };
+
+    useEffect(() => {
+        // Fetch the current user's data using the provided token
+        getUserByToken(token)
+            .then((userData) => setCurrentUser(userData.user))
+            .catch((error) => {
+                console.error("Error fetching current user:", error);
+                setCurrentUser(null);
+            });
+    }, [token]);
+    
+
+    const handleCommentSubmit = (classId) => {
+        const newCommentObject = {
+            review: commentText[classId] || "",
+            post: classId,
+            user: currentUser ? currentUser.id : null,
+        };
+
+        createComments(newCommentObject)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    // Clear the comment input
+                    setCommentText({ ...commentText, [classId]: "" });
+
+                    // Refresh the page
+                    window.location.reload();
+                }
+            })
+            .catch((error) => {
+                console.error("Error creating comment:", error);
+            });
+    };
+    
 
     useEffect(() => {
         getAllClasses().then((classesData) => setClasses(classesData));
@@ -144,9 +192,9 @@ export const ClassList = ({ token }) => {
         <div className="container">
             <h1 className="classes-title">All classes</h1>
 
-            <article>
+            <article className="all">
                 {classes.map((classObject) => (
-                    <div className="class" key={classObject.id}>
+                    <div className="allclasses" key={classObject.id}>
                         <div className="title">
                             {classObject.name} with{" "}
                             <Link to={`/users/${classObject.trainer.id}`}>
@@ -155,12 +203,14 @@ export const ClassList = ({ token }) => {
                         </div>
                         <section>
                             <div>
-                                {classObject.location}
-                                <div className="time-date">{formatDate(classObject.timeDate)}</div>
+                                <strong>Location:</strong> {classObject.location}
+                                <div className="time-date"><strong>Date & Time:</strong> {formatDate(classObject.timeDate)}</div>
                             </div>
 
-                            <div>{classObject.difficulty.skillLevel}</div>
-                            <div>${classObject.price}</div>
+                            <div><strong>Difficulty:</strong> {classObject.difficulty.skillLevel}</div>
+
+                            <div><strong>Price:</strong> ${classObject.price}</div>
+                            
                             <div className="button-container">
                                 <button
                                     className="going-button"
@@ -184,6 +234,31 @@ export const ClassList = ({ token }) => {
                                 </button>
                             </div>
                         </section>
+                        <div className="comments">
+                            <h2 className="comment-header">Comments</h2>
+                            <ul>
+                                {classObject.comments.map((comment) => (
+                                    <li key={comment.id}>
+                                        <strong>{comment.user.username}: </strong>
+                                        {comment.review}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="comment-input">
+                            <input
+                                    type="text"
+                                    placeholder="Add a comment..."
+                                    value={commentText[classObject.id] || ""} // Get the comment text for the specific class ID
+                                    onChange={(event) => handleCommentChange(classObject.id, event)}
+                                />
+                                <button
+                                    className="comment-button"
+                                    onClick={() => handleCommentSubmit(classObject.id)}
+                                >
+                                    Comment
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </article>

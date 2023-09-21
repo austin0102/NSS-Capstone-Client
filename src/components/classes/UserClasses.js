@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import "./Class.css"
+import './Class.css';
 import { deleteClass, getUserClasses } from '../../managers/ClassManager';
 
 export function UserClasses({ token }) {
@@ -71,7 +71,7 @@ export function UserClasses({ token }) {
         </button>
       </div>
 
-      <article>
+      <article className="all">
         {filteredClasses().map((classObject) => (
           <div className="class" key={classObject.id}>
             <div className="title">
@@ -79,11 +79,11 @@ export function UserClasses({ token }) {
             </div>
             <section>
               <div>
-                {classObject.location} 
-              <div className="time-date">{formatDate(classObject.timeDate)}</div>
+                <strong>Location:</strong> {classObject.location}
+                <div className="time-date"><strong>Date & Time:</strong> {formatDate(classObject.timeDate)}</div>
               </div>
-              <div>{classObject.difficulty.skillLevel}</div>
-              <div>${classObject.price}</div>
+              <div><strong>Difficulty:</strong> {classObject.difficulty.skillLevel}</div>
+              <div><strong>Price:</strong> ${classObject.price}</div>
               <div className="class-actions">
                 <button
                   className="edit-button"

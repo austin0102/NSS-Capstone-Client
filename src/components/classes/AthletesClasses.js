@@ -67,7 +67,7 @@ export const MyAthleteClasses = ({ token }) => {
         </button>
       </div>
   
-      <article className="article">
+      <article className="all">
         {athleteClasses.map((classObject) => (
           <div className="class" key={classObject.id}>
             <div className="title">
@@ -76,11 +76,11 @@ export const MyAthleteClasses = ({ token }) => {
             </div>
             <section>
               <div>
-                {classObject.class_attended.location}{' '}
-                <div className="time-date">{formatDate(classObject.class_attended.timeDate)}</div>
+                <strong>Location:</strong> {classObject.class_attended.location}{' '}
+                <div className="time-date"><strong>Date & Time:</strong> {formatDate(classObject.class_attended.timeDate)}</div>
               </div>
-              <div>{classObject.class_attended.difficulty.skillLevel}</div>
-              <div>${classObject.class_attended.price}</div>
+              <div><strong>Difficulty:</strong> {classObject.class_attended.difficulty.skillLevel}</div>
+              <div><strong>Price:</strong> ${classObject.class_attended.price}</div>
             </section>
           </div>
         ))}
