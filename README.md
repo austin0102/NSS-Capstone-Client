@@ -67,6 +67,7 @@ npm install
 ```sh
 npm start
 ```
+4. Click the Register Button to create a new profile then login.
 
 ### Contact
 Email: austinwarrick@gmail.com
